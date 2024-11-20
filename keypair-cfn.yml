@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Create KeyPair"
+
+Parameters:
+
+  KeyName:
+    Description: Key Name of KeyPair
+    Type: String
+
+  PublicKeyMaterial:
+    Description: "ssh-rsa AAAAB3NzaC1yc2.."
+    Type: "String"
+    NoEcho: true
+
+Conditions:
+  PublicKeyMaterialProvided: !Not [ !Equals [ !Ref PublicKeyMaterial, '' ] ]
+
+Resources:
+
+  KeyPair:
+    Type: AWS::EC2::KeyPair
+    Properties:
+      KeyName: !Sub '${AWS::StackName}-${KeyName}'
+      PublicKeyMaterial: !If [ PublicKeyMaterialProvided, !Ref PublicKeyMaterial, !Ref 'AWS::NoValue' ]
+
+Outputs:
+  KeyPairKeyName:
+    Value:
+      Ref: KeyPair
+    Export:
+      Name: !Sub '${AWS::StackName}-keypair-keyname'
