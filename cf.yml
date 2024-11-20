@@ -111,11 +111,6 @@ Parameters:
     Description: Server minecraft version
     Default: ''
 
-  Memory:
-    Type: String
-    Description: How much Memory to allocate for the JVM
-    Default: '1G'
-
   Seed:
     Type: String
     Description: The seed used to generate the world
@@ -178,7 +173,6 @@ Metadata:
         - Difficulty
         - Whitelist
         - MinecraftVersion
-        - Memory
         - Seed
         - MaxPlayers
         - ViewDistance
@@ -244,8 +238,6 @@ Metadata:
         default: "If you have a hosted zone in Route 53 and wish to update a DNS record whenever your Minecraft instance starts, supply the hosted zone ID here."
       RecordName:
         default: "If you have a hosted zone in Route 53 and wish to set a DNS record whenever your Minecraft instance starts, supply a record name here (e.g. minecraft.mydomain.com)."
-      Memory:
-        default: "If you wish to increase the Java memory-heap limit of 1GB. Format: <size>[g|G|m|M|k|K]"
       Seed:
         default: "Seed for world generation"
       MaxPlayers:
@@ -273,7 +265,6 @@ Conditions:
   IPv6AddressProvided: !Not [ !Equals [ !Ref YourIPv6, '' ] ]
   DnsConfigEnabled: !And [ !Not [ !Equals [ !Ref HostedZoneId, '' ] ], !Not [ !Equals [ !Ref RecordName, '' ] ] ]
   SpotPriceProvided: !Not [ !Equals [ !Ref SpotPrice, '' ] ]
-  MemoryProvided: !Not [ !Equals [ !Ref Memory, '' ] ]
   SeedProvided: !Not [ !Equals [ !Ref Seed, '' ] ]
   MaxPlayersProvided: !Not [ !Equals [ !Ref MaxPlayers, -1 ] ]
   ViewDistanceProvided: !Not [ !Equals [ !Ref ViewDistance, -1 ] ]
@@ -592,11 +583,6 @@ Resources:
               - MinecraftVersionProvided
               - Name: "VERSION"
                 Value: !Sub "${MinecraftVersion}"
-              - !Ref 'AWS::NoValue'
-            - !If
-              - MemoryProvided
-              - Name: "MEMORY"
-                Value: !Sub "${Memory}"
               - !Ref 'AWS::NoValue'
             - !If
               - SeedProvided
