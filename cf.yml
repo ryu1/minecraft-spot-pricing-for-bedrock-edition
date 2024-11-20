@@ -572,7 +572,7 @@ Resources:
             - Name: "EULA"
               Value: "TRUE"
             - NAME: "ONLINE_MODE"
-              VALUE: "TRUE"
+              Value: "TRUE"
             - !If
               - AdminPlayerNamesProvided
               - Name: "OPS"
