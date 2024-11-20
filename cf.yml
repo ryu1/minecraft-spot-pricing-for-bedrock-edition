@@ -564,6 +564,8 @@ Resources:
               Value: "TRUE"
             - NAME: "ONLINE_MODE"
               Value: "TRUE"
+            - Name: "ALLOW_CHEATS"
+              Value: "TRUE"
             - !If
               - AdminPlayerNamesProvided
               - Name: "OPS"
@@ -586,7 +588,7 @@ Resources:
               - !Ref 'AWS::NoValue'
             - !If
               - SeedProvided
-              - Name: "SEED"
+              - Name: "LEVEL_SEED"
                 Value: !Sub "${Seed}"
               - !Ref 'AWS::NoValue'
             - !If
