@@ -571,6 +571,8 @@ Resources:
           Environment:
             - Name: "EULA"
               Value: "TRUE"
+            - NAME: "ONLINE_MODE"
+              VALUE: "TRUE"
             - !If
               - AdminPlayerNamesProvided
               - Name: "OPS"
@@ -583,7 +585,7 @@ Resources:
               - !Ref 'AWS::NoValue'
             - !If
               - WhitelistProvided
-              - Name: "WHITELIST"
+              - Name: "WHITE_LIST"
                 Value: !Sub "${Whitelist}"
               - !Ref 'AWS::NoValue'
             - !If
@@ -613,7 +615,7 @@ Resources:
               - !Ref 'AWS::NoValue'
             - !If
               - GameModeProvided
-              - Name: "MODE"
+              - Name: "GAMEMODE"
                 Value: !Sub "${GameMode}"
               - !Ref 'AWS::NoValue'
             - !If
