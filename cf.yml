@@ -154,14 +154,6 @@ Parameters:
     - BIOMESOP
     - BIOMESOPLENTY
 
-  EnableRollingLogs:
-    Type: String
-    Description: "By default the log file will grow without limit. Set to true to use a rolling log strategy."
-    Default: false
-    AllowedValues:
-    - true
-    - false
-
   Timezone:
     Type: String
     Description: "Change the server's timezone. Use the canonical name of the format: Area/Location (e.g. America/New_York)"
@@ -192,7 +184,6 @@ Metadata:
         - ViewDistance
         - GameMode
         - LevelType
-        - EnableRollingLogs
         - Timezone
       - Label:
           default: Optional ECS Cluster and Task Configuration
@@ -265,8 +256,6 @@ Metadata:
         default: "The Minecraft game mode"
       LevelType:
         default: "Level type for world generation"
-      EnableRollingLogs:
-        default: "Whether to enable rolling logs"
       Timezone:
         default: "The server's timezone"
 
@@ -290,7 +279,6 @@ Conditions:
   ViewDistanceProvided: !Not [ !Equals [ !Ref ViewDistance, -1 ] ]
   GameModeProvided: !Not [ !Equals [ !Ref GameMode, '' ] ]
   LevelTypeProvided: !Not [ !Equals [ !Ref LevelType, '' ] ]
-  EnableRollingLogsProvided: !Not [ !Equals [ !Ref EnableRollingLogs, '' ] ]
   TimezoneProvided: !Not [ !Equals [ !Ref Timezone, '' ] ]
 
 
@@ -632,11 +620,6 @@ Resources:
               - LevelTypeProvided
               - Name: "LEVEL_TYPE"
                 Value: !Sub "${LevelType}"
-              - !Ref 'AWS::NoValue'
-            - !If
-              - EnableRollingLogsProvided
-              - Name: "ENABLE_ROLLING_LOGS"
-                Value: !Sub "${EnableRollingLogs}"
               - !Ref 'AWS::NoValue'
             - !If
               - TimezoneProvided
