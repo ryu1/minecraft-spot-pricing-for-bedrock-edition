@@ -407,9 +407,9 @@ Resources:
           IpProtocol: tcp
           CidrIpv6: !Sub "${YourIPv6}/128"
         - !Ref 'AWS::NoValue'
-      - FromPort: 25565
-        ToPort: 25565
-        IpProtocol: tcp
+      - FromPort: 19132
+        ToPort: 19132
+        IpProtocol: udp
         CidrIp: 0.0.0.0/0
       VpcId: !Ref Vpc
 
@@ -539,9 +539,9 @@ Resources:
               - !Ref Command
               - !Ref 'AWS::NoValue'
           PortMappings:
-          - ContainerPort: 25565
-            HostPort: 25565
-            Protocol: tcp
+          - ContainerPort: 19132
+            HostPort: 19132
+            Protocol: udp
           LogConfiguration:
             !If
             - LogGroupNameProvided
