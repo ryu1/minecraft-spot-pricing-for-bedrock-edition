@@ -86,10 +86,6 @@ Parameters:
     Description: "Java version (Examples include latest, adopt13, openj9, etc) Refer to tag descriptions available here: https://github.com/itzg/docker-minecraft-server)"
     Default: 'latest'
 
-  MinecraftTypeTag:
-    Type: String
-    Description: "(Examples include SPIGOT, BUKKIT, TUINITY, etc) Refer to tag descriptions available here: https://github.com/itzg/docker-minecraft-server)"
-
   AdminPlayerNames:
     Type: String
     Description: Op/Administrator Players
@@ -186,7 +182,6 @@ Metadata:
       - Label:
           default: Optional Server Settings
         Parameters:
-        - MinecraftTypeTag
         - AdminPlayerNames
         - Difficulty
         - Whitelist
@@ -228,8 +223,6 @@ Metadata:
         default: "Maximum spot price per hour? Leave blank to disable spot pricing."
       MinecraftImageTag:
         default: "Which version of Minecraft do you want to launch?"
-      MinecraftTypeTag:
-        default: "Which type of Minecraft do you want to launch?"
       AdminPlayerNames:
         default: "A comma delimited list (no spaces) of player names to be admins"
       Difficulty:
@@ -278,7 +271,6 @@ Metadata:
         default: "The server's timezone"
 
 Conditions:
-  MinecraftTypeTagProvided: !Not [ !Equals [ !Ref MinecraftTypeTag, '' ] ]
   AdminPlayerNamesProvided: !Not [ !Equals [ !Ref AdminPlayerNames, '' ] ]
   DifficultyProvided: !Not [ !Equals [ !Ref Difficulty, '' ] ]
   WhitelistProvided: !Not [ !Equals [ !Ref Whitelist, '' ] ]
@@ -591,11 +583,6 @@ Resources:
           Environment:
             - Name: "EULA"
               Value: "TRUE"
-            - !If
-              - MinecraftTypeTagProvided
-              - Name: "TYPE"
-                Value: !Sub "${MinecraftTypeTag}"
-              - !Ref 'AWS::NoValue'
             - !If
               - AdminPlayerNamesProvided
               - Name: "OPS"
