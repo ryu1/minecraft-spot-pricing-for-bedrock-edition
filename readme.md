@@ -6,7 +6,7 @@ The template contained within this repository can be used to deploy "a Minecraft
 
 1. A basic understanding of Amazon Web Services, specifically CloudFormation.
 2. An AWS Account.
-3. Basic knowledge of Linux administration (no more than what would be required to just use the `itzg/docker-minecraft-server` Docker image).
+3. Basic knowledge of Linux administration (no more than what would be required to just use the `itzg/docker-minecraft-bedrock-server` Docker image).
 
 ## Overview
 
