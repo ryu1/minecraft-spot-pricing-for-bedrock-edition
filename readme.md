@@ -12,7 +12,7 @@ The template contained within this repository can be used to deploy a Minecraft 
 
 All of this is shamelessly copied and tweaked from the [Factorio Spot Pricing](https://github.com/m-chandler/factorio-spot-pricing) template.
 
-The solution builds upon the [itzg/docker-minecraft-server](https://github.com/itzg/docker-minecraft-server) Docker image, so generously curated by [the contributors](https://github.com/itzg/docker-minecraft-server/graphs/contributors) (thank you!). 
+The solution builds upon the [itzg/docker-minecraft-bedrock-server](https://github.com/itzg/docker-minecraft-bedrock-server) Docker image, so generously curated by [the contributors](https://github.com/itzg/docker-minecraft-bedrock-server/graphs/contributors) (thank you!). 
 
 In a nutshell, the CloudFormation template launches an _ephemeral_ instance which joins itself to an Elastic Container Service (ECS) Cluster. Within this ECS Cluster, an ECS Service is configured to run a Minecraft Docker image. The ephemeral instance does not store any saves, mods, Minecraft config, data etc. - all of this state is stored on a network file system (Elastic File System - EFS).
 
@@ -123,7 +123,7 @@ This has been tested in the Ohio AWS region (verify your AWS region of choice in
 
 Be sure to check out the repository on GitHub. Unless your question is specifically related to the AWS deployment, you may find the information you're after there:
 
-- GitHub: https://github.com/itzg/docker-minecraft-server
+- GitHub: https://github.com/itzg/docker-minecraft-bedrock-server
 
 ### Stack gets stuck on CREATE_IN_PROGRESS
 
@@ -147,7 +147,7 @@ Visit the ECS dashboard in the AWS Console.
 
 If you SSH onto the server, you can run the following commands for debugging purposes:
 
-* `sudo docker logs $(docker ps -q --filter ancestor=itzg/docker-minecraft-server)` - Check Minecraft container logs.
+* `sudo docker logs $(docker ps -q --filter ancestor=itzg/docker-minecraft-bedrock-server` - Check Minecraft container logs.
 
 DO NOT restart the Minecraft docker container via SSH. This will cause ECS to lose track of the container, and effectively kill the restarted container and create a new one. Refer to Restarting the Container above for the right method.
 
