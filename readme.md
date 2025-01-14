@@ -1,6 +1,6 @@
 # Complete Minecraft Server Deployment (CloudFormation)
 
-The template contained within this repository can be used to deploy a Minecraft server for "Bedrock Edition (not Java Edition)" to Amazon Web Services (AWS) in minutes. As the solution leverages "Spot Pricing", the server should cost less than a cent an hour to run, and you can even turn it off when you and your friends aren't playing - saving even more money.
+The template contained within this repository can be used to deploy "a Minecraft server for Bedrock Edition (not Java Edition)" to Amazon Web Services (AWS) in minutes. As the solution leverages "Spot Pricing", the server should cost less than a cent an hour to run, and you can even turn it off when you and your friends aren't playing - saving even more money.
 
 ## Prerequisites
 
